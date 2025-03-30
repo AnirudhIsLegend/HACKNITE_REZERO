@@ -1,6 +1,6 @@
-# Importing essential libraries and modules
+Ṭ# Importing essential libraries and modules
 
-from flask import Flask, render_template, request, Markup
+from flask import Flask, render_template, request, Markup, redirect
 import numpy as np
 import pandas as pd
 from utils.disease import disease_dic
@@ -11,7 +11,10 @@ import pickle
 import io
 import torch
 from torchvision import transforms
-from PIL import Image
+# from PIL import Image
+from PIL import Image, ImageOps, ImageEnhance
+
+
 from utils.model import ResNet9
 # ==============================================================================================
 
@@ -133,7 +136,7 @@ app = Flask(__name__)
 
 @ app.route('/')
 def home():
-    title = 'Harvestify - Home'
+    title = 'KisaanAI - Home'
     return render_template('index.html', title=title)
 
 # render crop recommendation form page
@@ -141,7 +144,7 @@ def home():
 
 @ app.route('/crop-recommend')
 def crop_recommend():
-    title = 'Harvestify - Crop Recommendation'
+    title = 'KisaanAI - Crop Recommendation'
     return render_template('crop.html', title=title)
 
 # render fertilizer recommendation form page
@@ -149,7 +152,7 @@ def crop_recommend():
 
 @ app.route('/fertilizer')
 def fertilizer_recommendation():
-    title = 'Harvestify - Fertilizer Suggestion'
+    title = 'KisaanAI - Fertilizer Suggestion'
 
     return render_template('fertilizer.html', title=title)
 
@@ -167,7 +170,7 @@ def fertilizer_recommendation():
 
 @ app.route('/crop-predict', methods=['POST'])
 def crop_prediction():
-    title = 'Harvestify - Crop Recommendation'
+    title = 'KisaanAI - Crop Recommendation'
 
     if request.method == 'POST':
         N = int(request.form['nitrogen'])
@@ -196,7 +199,7 @@ def crop_prediction():
 
 @ app.route('/fertilizer-predict', methods=['POST'])
 def fert_recommend():
-    title = 'Harvestify - Fertilizer Suggestion'
+    title = 'KisaanAI - Fertilizer Suggestion'
 
     crop_name = str(request.form['cropname'])
     N = int(request.form['nitrogen'])
@@ -240,7 +243,7 @@ def fert_recommend():
 
 @app.route('/disease-predict', methods=['GET', 'POST'])
 def disease_prediction():
-    title = 'Harvestify - Disease Detection'
+    title = 'KisaanAI - Disease Detection'
 
     if request.method == 'POST':
         if 'file' not in request.files:

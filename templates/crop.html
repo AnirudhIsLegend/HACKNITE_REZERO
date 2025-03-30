@@ -2,13 +2,30 @@
 
 <style>
   html body {
-    background-color: rgb(206, 206, 228);
+    background: linear-gradient(135deg,
+        #000000,
+        rgb(17, 255, 0),
+        #000000 55%
+    );
+    background-size: 200% 200%;
+    animation: gradientBG 15s ease infinite;
   }
+  @keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
 </style>
 <!--Form Section-->
 <br /><br />
-<h2 style="text-align: center; margin: 0px; color: black">
-  <b>Find out the most suitable crop to grow in your farm</b>
+<h2 style="text-align: center; margin: 0px; color: wheat">
+  <b>CROP RECOMMENDATION</b>
 </h2>
 <br />
 
@@ -17,7 +34,7 @@
     width: 350px;
     height: 50rem;
     margin: 0px auto;
-    color: black;
+    color: whitesmoke;
     border-radius: 25px;
     padding: 10px 10px;
   "
